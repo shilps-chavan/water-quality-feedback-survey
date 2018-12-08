@@ -1,0 +1,34 @@
+@import model.FeedbackDetails
+@import helper._
+
+@(feedbacks : List[FeedbackDetails])
+<script type="text/javascript">
+</script>
+
+<div id ="error-message">
+    <div id="error-message-before"></div>
+    <div id = "error-info"></div>
+</div>
+
+<div class="default-form">
+    <table style="width:100%">
+        <tr>
+            <th>DeviceId</th>
+            <th>Question</th>
+            <th>Rating</th>
+            <th>Comments</th>
+            <th>city</th>
+        </tr>
+
+    <br>
+        @for( i <- 0 until feedbacks.size){
+        <tr>
+             <td>@feedbacks(i).getDeviceId() </td><td>@feedbacks(i).getQuestion()</td><td>@if(feedbacks(i).getAnswer()==0) {Good} else {BAD} </td><td>@feedbacks(i).getComments() </td><td>@feedbacks(i).getCity()</td>
+
+        </tr>
+        }
+    </div>
+
+
+
+

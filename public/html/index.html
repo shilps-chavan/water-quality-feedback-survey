@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+
+    <title>FeedBack Tool for Water Quality and Servicess</title>
+    <script language="javascript">
+     function routeTheRequest() {
+         alert("hi");
+         window.open('ServiceDeliveryQuestionnaire.html');
+
+     }
+    </script>
+</head>
+<body>
+<div>
+    <form method="post">
+        Device Id :<input type="text" name="DeviceID"></br>
+        Phone Number :<input type="text" name="phoneNo"></br>
+        <p>Select a option for  feedback:</p>
+        <div>
+            <input type="radio" id="sd" name="sd" selected value="Service Delivery" >
+            <label for="sd">Service Delivery</label>
+        </div>
+        <div>
+            <input type="radio" id="wq" name="wq" value="Water Qualitys">
+            <label for="sd">Water Quality</label>
+        </div>
+        <input type="submit" value="Submit">
+
+    </form>
+
+</div>
+</body>
+</html>
