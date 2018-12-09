@@ -4,26 +4,67 @@
 @(feedbacks : List[FeedbackDetails])
 <script type="text/javascript">
 </script>
-
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
 <div id ="error-message">
     <div id="error-message-before"></div>
     <div id = "error-info"></div>
 </div>
 
 <div class="default-form">
-    <table style="width:100%">
+    <table cellspacing="10" border="1" width="100%">
         <tr>
-            <th>DeviceId</th>
-            <th>Question</th>
-            <th>Rating</th>
-            <th>Comments</th>
-            <th>city</th>
+            <th >DeviceId</th>
+            <th width="70%" >Question & Rating</th>
+            <th >Comments</th>
+            <th >city</th>
         </tr>
 
     <br>
         @for( i <- 0 until feedbacks.size){
         <tr>
-             <td>@feedbacks(i).getDeviceId() </td><td>@feedbacks(i).getQuestion()</td><td>@if(feedbacks(i).getAnswer()==0) {Good} else {BAD} </td><td>@feedbacks(i).getComments() </td><td>@feedbacks(i).getCity()</td>
+             <td>@feedbacks(i).getDeviceId() </td>
+            <td>
+                <table width="60%" cellpadding="10">
+            @for( j<- 0 until feedbacks(i).getQuestionInfoList.size){
+                    <tr>
+                    <td width="50%">
+                @feedbacks(i).getQuestionInfoList()(j).getQuestion()
+                    </td>
+                    <td>
+                @{if(feedbacks(i).getQuestionInfoList()(j).getAnwerid()==0) {
+                <div>Strongly Disagree</div>
+                } else if(feedbacks(i).getQuestionInfoList()(j).getAnwerid()==1)
+                {
+                <div>Disagree</div>
+                }
+                else if(feedbacks(i).getQuestionInfoList()(j).getAnwerid()==2)
+                {
+                <div>Neutral</div>
+                }
+                else if(feedbacks(i).getQuestionInfoList()(j).getAnwerid()==3)
+                {
+                <div>Agree</div>
+                }
+                else if(feedbacks(i).getQuestionInfoList()(j).getAnwerid()==4)
+                {
+                <div>Stongly  Agree</div>
+                        }
+
+                }
+                    </td>
+                    </tr>
+
+            }
+                </table>
+            </td>
+
+
+            <td>@feedbacks(i).getComments() </td><td>@feedbacks(i).getCity()</td>
 
         </tr>
         }
