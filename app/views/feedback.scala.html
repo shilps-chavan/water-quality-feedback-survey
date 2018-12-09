@@ -15,7 +15,7 @@
 
     Device Id :<input type="text" name="deviceId"></br>
 
-    movbile :<input type="text" name="mobileNo"></br>
+    Mobile :<input type="text" name="mobileNo"></br>
 
     <p>Select a option for  feedback:</p>
     <div>
@@ -33,14 +33,18 @@
         @questions(i).getQuestion() <br>
         <input type="hidden" name="question[@i]" value="@questions(i).getQuestionId()" >
 
-        <input type="radio"  name="answer[@i]"  value="0"  />Good
-        <input type="radio"  name="answer[@i]"  value="1" />BAD</br>
-        comments :<input type="text" name="comments[@i]"></br>
+        <input type="radio"  name="answer[@i]"  value="0"  />Strongly Disagree
 
+        <input type="radio"  name="answer[@i]"  value="1" />Disagree
+        <input type="radio"  name="answer[@i]"  value="2"  />Neutral
+        <input type="radio"  name="answer[@i]"  value="3"  />Agree
+        <input type="radio"  name="answer[@i]"  value="4"  />Stongly  Agree
+        </br>
 
         <br>
         }
     </div>
+    Comments :<textarea rows="4" cols="50" name="comments"></textarea></br>
     <input type="submit" value="Submit">
 
 
