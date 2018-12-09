@@ -1,0 +1,68 @@
+-- Table: public.feedback
+
+-- DROP TABLE public.feedback;
+
+CREATE TABLE public.feedback
+(
+  device_id character varying(10000),
+  answer integer,
+  id integer NOT NULL,
+  question_id integer,
+  mobileno character varying(100)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.feedback
+  OWNER TO postgres;
+
+
+
+-- Table: public.comments
+
+-- DROP TABLE public.comments;
+
+CREATE TABLE public.comments
+(
+  comments character varying(10000),
+  surveyid integer
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.comments
+  OWNER TO postgres;
+  
+  
+  -- Table: public.location
+
+-- DROP TABLE public.location;
+
+CREATE TABLE public.location
+(
+  deviceid character varying(10000),
+  location character varying(10000)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.location
+  OWNER TO postgres;
+
+
+-- Table: public.questions
+
+-- DROP TABLE public.questions;
+
+CREATE TABLE public.questions
+(
+  id integer,
+  question character varying(10000),
+  questiontype character varying(100)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.questions
+  OWNER TO postgres;
+
