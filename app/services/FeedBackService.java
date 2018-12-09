@@ -2,6 +2,8 @@ package services;
 
 
 import database.ConnectionManager;
+import model.FeedBackInfo;
+import model.QuestionInfo;
 import model.FeedbackDetails;
 
 import java.sql.Connection;
@@ -19,12 +21,38 @@ public class FeedBackService {
         Connection connection = ConnectionManager.getConnection();
         Statement stmt = null;
         int id=random.nextInt(1455660000);
+        feedbackDetails.setSurveyId(id);
+
+        for(QuestionInfo question:feedbackDetails.getQuestionInfoList()) {
+            try {
+                stmt = connection.createStatement();
+                String sql = "INSERT INTO feedback(device_id, answer, mobileno,id,question_id) VALUES ('" + feedbackDetails.getDeviceId() + "'," +
+                        "'" + question.getAnwerid()  + "','" + feedbackDetails.getMobileNo() + "','" + id +
+                        "','" + question.getQuestionId() +"')";
+
+                System.out.println("statementttttttt"+sql);
+
+                stmt.executeUpdate(sql);
+                connection.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    stmt.close();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
         try {
             stmt = connection.createStatement();
-            String sql="INSERT INTO feedback(device_id, answer, comments, mobileno,id,question_id) VALUES ('"+feedbackDetails.getDeviceId()+"'," +
-                    "'"+feedbackDetails.getAnswer()+"','"+feedbackDetails.getComments()+"','"+feedbackDetails.getMobileNo()+"','"+ id+
-                    "','"+feedbackDetails.getQuestionId()+"')";
 
+            String sql = "INSERT INTO public.comments(comments, surveyid) VALUES ('" + feedbackDetails.getComments() +  "','" + feedbackDetails.getSurveyId() +"')";
+
+            System.out.println("sqlll---"+sql);
             stmt.executeUpdate(sql);
             connection.commit();
         } catch (SQLException e) {
@@ -39,42 +67,51 @@ public class FeedBackService {
 
         }
 
+
+
 return  feedbackDetails;
 
     }
 
-    public List<FeedbackDetails> getFeedbackDetails() {
+    public List<FeedBackInfo> getFeedbackDetails() {
         Connection connection = ConnectionManager.getConnection();
         Statement stmt = null;
-        int id=random.nextInt(1455660000);
         ResultSet rs = null;
-        List<FeedbackDetails> feedbackDetails=new ArrayList<FeedbackDetails>();
+        List<FeedBackInfo> feedbackDetails=new ArrayList<FeedBackInfo>();
         try {
             stmt = connection.createStatement();
 
 
-            rs = stmt.executeQuery("select * from feedback,questions where feedback.question_id=questions.id");
+            rs = stmt.executeQuery("select * from feedback,questions,comments where feedback.question_id=questions.id and feedback.id=comments.surveyid" );
+            List<QuestionInfo> questionInfo=new ArrayList<QuestionInfo>();
             while (rs.next()) {
+                FeedBackInfo feedback=new FeedBackInfo();
 
                 String device_id = rs.getString("device_id");
                 String mobileno = rs.getString("mobileno");
-                String comments = rs.getString("comments");
 
                 int answer = rs.getInt("answer");
+                int id = rs.getInt("id");
+
+                String comments=rs.getString("comments");
                 String question = rs.getString("question");
 
 
 
-                FeedbackDetails feedback=new FeedbackDetails();
+
                 feedback.setDeviceId(device_id);
                 feedback.setMobileNo(mobileno);
-                feedback.setQuestion(question);
+                feedback.setSurveyId(id);
+
                 feedback.setAnswer(answer);
+                feedback.setQuestion(question);
+                //feedback.
                 feedback.setComments(comments);
                 //feedback.setQuestionId(questionId);
                 feedback.setCity("pune");
                 //questionDetails.setQuestion(question);
                // questionDetails.setQuestionId(id);
+                //feedback.setQuestionInfoList();
 
                 feedbackDetails.add(feedback);
 
