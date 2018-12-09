@@ -38,7 +38,9 @@ public class QuestionairService {
 
             }
         } catch (Exception e) {
+            e.printStackTrace();
         } finally {
+
             try {
                 rs.close();
                 stmt.close();
