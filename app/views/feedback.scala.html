@@ -17,17 +17,6 @@
 
     Mobile :<input type="text" name="mobileNo"></br>
 
-    <p>Select a option for  feedback:</p>
-    <div>
-        <input type="radio" id="sd" name="sd" selected value="Service Delivery" >
-        <label for="sd">Service Delivery</label>
-    </div>
-    <br>
-    <div>
-        <input type="radio" id="wq" name="wq" value="Water Qualitys">
-        <label for="sd">Water Quality</label>
-        <br>
-        <br>
         <input type="hidden" name="questionsize" value="@questions.size" >
         @for( i <- 0 until questions.size){
         @questions(i).getQuestion() <br>
@@ -44,7 +33,12 @@
         <br>
         }
     </div>
-    Comments :<textarea rows="4" cols="50" name="comments"></textarea></br>
+    <div>
+    Comments :
+    <textarea rows="4" cols="50" name="comments"></textarea>
+    </div>
+
+    </br>
     <input type="submit" value="Submit">
 
 
