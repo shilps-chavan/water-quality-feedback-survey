@@ -27,10 +27,9 @@ public class FeedBackService {
             try {
                 stmt = connection.createStatement();
                 String sql = "INSERT INTO feedback(device_id, answer, mobileno,id,question_id) VALUES ('" + feedbackDetails.getDeviceId() + "'," +
-                        "'" + question.getAnwerid()  + "','" + feedbackDetails.getMobileNo() + "','" + id +
+                        "'" + question.getAnswerid()  + "','" + feedbackDetails.getMobileNo() + "','" + id +
                         "','" + question.getQuestionId() +"')";
 
-                System.out.println("statementttttttt"+sql);
 
                 stmt.executeUpdate(sql);
                 connection.commit();
@@ -52,7 +51,6 @@ public class FeedBackService {
 
             String sql = "INSERT INTO public.comments(comments, surveyid) VALUES ('" + feedbackDetails.getComments() +  "','" + feedbackDetails.getSurveyId() +"')";
 
-            System.out.println("sqlll---"+sql);
             stmt.executeUpdate(sql);
             connection.commit();
         } catch (SQLException e) {
