@@ -10,16 +10,16 @@ public class QuestionInfo {
         this.questionId = questionId;
     }
 
-    public int getAnwerid() {
-        return anwerid;
+    public int getAnswerid() {
+        return answerid;
     }
 
-    public void setAnwerid(int  anwerid) {
-        this.anwerid = anwerid;
+    public void setAnswerid(int answerid) {
+        this.answerid = answerid;
     }
 
     private  String questionId;
-    private  int anwerid;
+    private  int answerid;
 
     public String getQuestion() {
         return question;
