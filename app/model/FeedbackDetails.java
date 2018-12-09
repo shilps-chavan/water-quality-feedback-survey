@@ -1,20 +1,33 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FeedbackDetails {
     private  String deviceId;
-    private String questionId;
-    private int answer;
+
+
+    public List<QuestionInfo> getQuestionInfoList() {
+        return questionInfoList;
+    }
+
+    public void setQuestionInfoList(List<QuestionInfo> questionInfoList) {
+        this.questionInfoList = questionInfoList;
+    }
+
+   private List<QuestionInfo> questionInfoList=new ArrayList<QuestionInfo>();
     private  String comments;
 
-    public String getQuestion() {
-        return question;
+    public int getSurveyId() {
+        return surveyId;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setSurveyId(int surveyId) {
+        this.surveyId = surveyId;
     }
 
-    private String question;
+    private  int surveyId;
+
 
     public String getCity() {
         return city;
@@ -42,24 +55,6 @@ public class FeedbackDetails {
 
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
-    }
-
-
-
-    public String getQuestionId() {
-        return questionId;
-    }
-
-    public void setQuestionId(String questionId) {
-        this.questionId = questionId;
-    }
-
-    public int getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(int answer) {
-        this.answer = answer;
     }
 
     public String getComments() {
